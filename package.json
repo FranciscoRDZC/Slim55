@@ -1,0 +1,17 @@
+{
+  "name": "Slim55API",
+  "version": "1.0.0",
+  "description": "API Slim55",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "Francisco Rodriguez",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.1",
+    "express": "^4.15.4"
+  }
+}
