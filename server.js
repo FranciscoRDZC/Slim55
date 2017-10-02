@@ -4,7 +4,7 @@ const app = express();
 const port = 8000;
 const router = express.Router();
 const path = require('path');
-const login = require('./routes/login.js');
+const users = require('./routes/users.js');
 const catalogs = require('./routes/catalogs.js')
 //parser from post body
 app.use(bodyParser.urlencoded({extended: true}));
@@ -27,9 +27,13 @@ router.post('/', function(req, res){
     res.setHeader('Content-type', 'text/html');
     res.sendfile(path.join(__dirname + '/html/Error.html'));
 });
+router.get('/Docs', function(req, res){
+    res.setHeader('Content-type', 'text/html');
+    res.sendfile(path.join(__dirname + '/html/Documentation.html'));
+});
 //routes of API
 app.use('/',router);
-app.use('/login', login);
+app.use('/users', users);
 app.use('/catalogs', catalogs);
 app.use(function(req, res, next){
     next();

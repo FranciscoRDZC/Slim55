@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="urf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>API Methods</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link href="./Desing/planeat.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>                        
+                </button>
+                <a class="navbar-brand" href="#">Plan Eat API</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">POST Methods</a></li>
+                    <li><a href="#">GET Methods</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid b1 text-center">
+        <h2 class="margin">API Docs</h2>
+    </div>
+    <div class="container-fluid b2 text-center">
+        <h2 class="margin">Post Methods</h2>
+    </div>
+    <div class="container-fluid bm text-center">
+        <div class="col-md-6">
+            <h3>Registro Formulario Plan Eat</h3>
+            <p>Request</p>
+            <div class="code-ex">
+                <code>
+                                    ec2-18-221-111-230.us-east-2.compute.amazonaws.com:8000
+                                    /users/form
+                                </code>
+            </div>
+            <p>JSON Body</p>
+            <div class="code-ex">
+                <code>
+                                    {
+                                        "FirstName":"Francisco",<br>
+                                        "LastName":"Rodriguez",<br>
+                                        "Email":"francisco.rdzc94@gmail.com",<br>
+                                        "Password":"12345" 
+                                    }
+                                </code>
+            </div>
+            <p>OK JSON Response</p>
+            <div class="code-ex">
+                <code>
+                                    {
+                                        "status": "OK",
+                                        "data": [
+                                            {
+                                                "Message": "Registro exitoso",
+                                                "UserID": 19
+                                            }
+                                        ]
+                                    }
+                                </code>
+            </div>
+            <p>Exception Request JSON Response</p>
+            <div class="code-ex">
+                <code>
+                                    {
+                                        "status": "OK",
+                                        "data": [
+                                            {
+                                                "Result": "Usuario ya existente"
+                                            }
+                                        ]
+                                    }
+                                </code>
+            </div>
+            <p>Bad Request JSON Response</p>
+            <div class="code-ex">
+                <code>
+                                    {
+                                        "status": "Error",
+                                        "message": {
+                                            "code": "ER_BAD_NULL_ERROR",
+                                            "errno": 1048,
+                                            "sqlMessage": "Column 'Email' cannot be null",
+                                            "sqlState": "23000",
+                                            "index": 0,
+                                            "sql": "Call PlanEat_Insert_catUsers_Form ('Francisco','Rodriguez',NULL,'12345')"
+                                        }
+                                    }
+                                </code>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h3>Registro con Facebook/Google</h3>
+            <p>Request</p>
+            <div class="code-ex">
+                <code>
+                                    ec2-18-221-111-230.us-east-2.compute.amazonaws.com:8000
+                                    /users/facebook_google
+                                </code>
+            </div>
+            <p>JSON Body</p>
+            <div class="code-ex">
+                <code>
+                                    {
+                                        "FirstName":"Francisco",<br>
+                                        "LastName":"Rodriguez",<br>
+                                        "Email":"francisco.rdzc94@gmail.com",<br>
+                                        "FacebookId":"12345",<br>
+                                        "GoogleID": null,<br>
+                                        "Photo": asdfasdf 
+                                    }
+                                </code>
+            </div>
+            <p>OK JSON Response</p>
+            <div class="code-ex">
+                <code>
+                                    {
+                                        "status": "OK",
+                                        "data": [
+                                            {
+                                                "Message": "Registro Exitoso",
+                                                "UserID": 3
+                                            }
+                                        ]
+                                    }
+                                </code>
+            </div>
+            <p>Exception Request JSON Response</p>
+            <div class="code-ex">
+                <code>
+                                    {
+                                        "status": "OK",
+                                        "data": [
+                                            {
+                                                "Message": "Usuario Actualizado"
+                                            }
+                                        ]
+                                    }
+                                </code>
+            </div>
+            <p>Exception Request JSON Response</p>
+            <div class="code-ex">
+                <code>
+                                    {
+                                        "status": "Error",
+                                        "message": {
+                                            "code": "ER_BAD_NULL_ERROR",
+                                            "errno": 1048,
+                                            "sqlMessage": "Column 'FirstName' cannot be null",
+                                            "sqlState": "23000",
+                                            "index": 0
+                                        }
+                                    }
+                                </code>
+            </div>
+
+        </div>
+    </div>
+    <div class="container-fluid bm text-center">
+        <div class="col-md-6">
+            <div class="spaceview"></div>
+            <h3>Login</h3>
+            <p>Request</p>
+            <div class="code-ex">
+                <code>
+                                    ec2-18-221-111-230.us-east-2.compute.amazonaws.com:8000
+                                    /users/login
+                                </code>
+            </div>
+            <p>JSON Body</p>
+            <div class="code-ex">
+                <code>
+                                    {
+                                        "Email":"francisco.rdzc94@gmail.com",
+                                        "Password":"12345"
+                                    }
+                                </code>
+            </div>
+            <p>OK JSON Response</p>
+            <div class="code-ex">
+                <code>
+                                    {
+                                        "status": "OK",
+                                        "message": [
+                                            {
+                                                "UserID": 5,
+                                                "FirstName": "Francisco",
+                                                "LastName": "Rodriguez",
+                                                "Email": "francisco.rdzc94@gmail.com",
+                                                "ObjectiveID": null,
+                                                "Rate": null,
+                                                "GenderID": null,
+                                                "Weight": null,
+                                                "Height": null,
+                                                "BirthDay": null,
+                                                "KindFoodID": null,
+                                                "Photo": null
+                                            }
+                                        ]
+                                    }
+                                </code>
+            </div>
+            <p>Exception Request JSON Response</p>
+            <div class="code-ex">
+                <code>
+                                    {
+                                        "status": "OK",
+                                        "message": [
+                                            {
+                                                "Result": "Usuario y/o Contraseña Erroneos"
+                                            }
+                                        ]
+                                    }
+                                </code>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="spaceview"></div>
+            <h3>Registro de plan de usuario</h3>
+            <p>Request</p>
+            <div class="code-ex">
+                <code>
+                                    ec2-18-221-111-230.us-east-2.compute.amazonaws.com:8000
+                                    /users/plandata
+                                </code>
+            </div>
+            <p>JSON Body</p>
+            <div class="code-ex">
+                <code>
+                                    {
+                                        "ID":"1",
+                                        "ObjectiveID":"1",
+                                        "Rate":"1",
+                                        "GenderID":"1",
+                                        "Weight":"1.1",
+                                        "Height":"1.1",
+                                        "BirthDay":"2010-06-15",
+                                        "KindFoodID":"1"
+                                    }
+                                </code>
+            </div>
+            <p>OK JSON Response</p>
+            <div class="code-ex">
+                <code>
+                                    {
+                                        "status": "OK",
+                                        "data": [
+                                            {
+                                                "Result": "Registro Exitoso"
+                                            }
+                                        ]
+                                    }
+                                </code>
+            </div>
+            <p>Exception Request JSON Response</p>
+            <div class="code-ex">
+                <code>
+                                    {
+                                        "status": "Error",
+                                        "message": {
+                                            "code": "ER_TRUNCATED_WRONG_VALUE",
+                                            "errno": 1292,
+                                            "sqlMessage": "Incorrect datetime value: '10:10:2010' for column 'BD' at row 1",
+                                            "sqlState": "22007",
+                                            "index": 0
+                                        }
+                                    }
+                                </code>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid b2 text-center">
+        <h2 class="margin">GET Methods</h2>
+    </div>
+    <div class="container-fluid bm text-center">
+        <div class="col-md-6">
+            <h3>Generos</h3>
+            <p>Request</p>
+            <div class="code-ex">
+                <code>
+                            ec2-18-221-111-230.us-east-2.compute.amazonaws.com:8000
+                            /catalogs/gender 
+                    </code>
+            </div>
+            <p>OK JSON Response</p>
+            <div class="code-ex">
+                <code>
+                            {
+                                "status": "OK",
+                                "data": [
+                                    {
+                                        "GenderID": 1,
+                                        "Gender": "Hombre"
+                                    },
+                                    {
+                                        "GenderID": 2,
+                                        "Gender": "Mujer"
+                                    }
+                                ]
+                            }
+                    </code>
+            </div>
+            <p>Exception Request JSON Response</p>
+            <div class="code-ex">
+                <code>
+                            Cannot POST /catalogs/gender
+                    </code>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h3>Objetivos</h3>
+            <p>Request</p>
+            <div class="code-ex">
+                <code>
+                                ec2-18-221-111-230.us-east-2.compute.amazonaws.com:8000
+                                /catalogs/objective 
+                        </code>
+            </div>
+            <p>OK JSON Response</p>
+            <div class="code-ex">
+                <code>
+                                    {
+                                        "status": "OK",
+                                        "data": [
+                                            {
+                                                "ObjectiveID": 1,
+                                                "Objective": "Bajar de peso"
+                                            },
+                                            {
+                                                "ObjectiveID": 2,
+                                                "Objective": "Mantenerte en tu peso"
+                                            },
+                                            {
+                                                "ObjectiveID": 3,
+                                                "Objective": "Aumentar de peso"
+                                            }
+                                        ]
+                                    }
+                            </code>
+            </div>
+            <p>Exception Request JSON Response</p>
+            <div class="code-ex">
+                <code>Cannot POST /catalogs/gender</code>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
