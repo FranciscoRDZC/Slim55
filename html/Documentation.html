@@ -11,7 +11,7 @@
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-    <link href="./Desing/planeat.css" rel="stylesheet">
+    <link href="https://s3.us-east-2.amazonaws.com/planeat/css/planeat.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -48,8 +48,7 @@
             <p>Request</p>
             <div class="code-ex">
                 <code>
-                                    ec2-18-221-111-230.us-east-2.compute.amazonaws.com:8000
-                                    /users/form
+                        http://ec2-18-221-111-230.us-east-2.compute.amazonaws.com:8000/users/form
                                 </code>
             </div>
             <p>JSON Body</p>
@@ -112,8 +111,7 @@
             <p>Request</p>
             <div class="code-ex">
                 <code>
-                                    ec2-18-221-111-230.us-east-2.compute.amazonaws.com:8000
-                                    /users/facebook_google
+                        http://ec2-18-221-111-230.us-east-2.compute.amazonaws.com:8000/users/facebook_google
                                 </code>
             </div>
             <p>JSON Body</p>
@@ -181,8 +179,7 @@
             <p>Request</p>
             <div class="code-ex">
                 <code>
-                                    ec2-18-221-111-230.us-east-2.compute.amazonaws.com:8000
-                                    /users/login
+                        http://ec2-18-221-111-230.us-east-2.compute.amazonaws.com:8000/users/login
                                 </code>
             </div>
             <p>JSON Body</p>
@@ -238,8 +235,7 @@
             <p>Request</p>
             <div class="code-ex">
                 <code>
-                                    ec2-18-221-111-230.us-east-2.compute.amazonaws.com:8000
-                                    /users/plandata
+                        http://ec2-18-221-111-230.us-east-2.compute.amazonaws.com:8000/users/plandata
                                 </code>
             </div>
             <p>JSON Body</p>
@@ -287,6 +283,34 @@
             </div>
         </div>
     </div>
+    <div class="container-fluid bm text-center">
+        <div class="spaceview"></div>
+        <h3>Upload Avatar</h3>
+        <p>Request</p>
+        <div class="code-ex">
+            <code>
+                    http://ec2-18-221-111-230.us-east-2.compute.amazonaws.com:8000/users/uploadavatar
+            </code>
+        </div>
+        <p>JSON Body</p>
+        <div class="code-ex">
+            <code>
+                {
+                    "UserID" : "6";
+                    "Avatar" : FILE.jpg;
+                }
+            </code>
+        </div>
+        <p>OK JSON Response</p>
+        <div class="code-ex">
+            <code>
+                    {
+                        "status": "OK",
+                        "link": "https://s3.us-east-2.amazonaws.com/planeat/usr/profile/1507132323138_Paco+RB.jpg"
+                    }
+            </code>
+        </div>
+    </div>
     <div class="container-fluid b2 text-center">
         <h2 class="margin">GET Methods</h2>
     </div>
@@ -296,8 +320,7 @@
             <p>Request</p>
             <div class="code-ex">
                 <code>
-                            ec2-18-221-111-230.us-east-2.compute.amazonaws.com:8000
-                            /catalogs/gender 
+                        http://ec2-18-221-111-230.us-east-2.compute.amazonaws.com:8000/catalogs/gender 
                     </code>
             </div>
             <p>OK JSON Response</p>
@@ -330,8 +353,7 @@
             <p>Request</p>
             <div class="code-ex">
                 <code>
-                                ec2-18-221-111-230.us-east-2.compute.amazonaws.com:8000
-                                /catalogs/objective 
+                        http://ec2-18-221-111-230.us-east-2.compute.amazonaws.com:8000/catalogs/objective 
                         </code>
             </div>
             <p>OK JSON Response</p>
@@ -361,8 +383,6 @@
                 <code>Cannot POST /catalogs/gender</code>
             </div>
         </div>
-
     </div>
 </body>
-
 </html>

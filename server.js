@@ -6,16 +6,18 @@ const router = express.Router();
 const path = require('path');
 const users = require('./routes/users.js');
 const catalogs = require('./routes/catalogs.js')
-//parser from post body
+
+//Parser from post body
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.all('/*', function(req, res, next){
     res.header("Access-Control-Allow-Origin", "*");
     res.header('Access-Control-Allow-Methods','GET,POST');
-    res.header('Access-Control-Allow-Headers', 'application/json');
-    console.log(res);
+    res.header('Access-Control-Allow-Headers', "*");
+    //console.log(res.getHeader(name));
     next();
 });
+
 //Handle error routes.
 router.get('/', function(req, res){
     res.status(404);
@@ -29,16 +31,18 @@ router.post('/', function(req, res){
 });
 router.get('/Docs', function(req, res){
     res.setHeader('Content-type', 'text/html');
-    res.sendfile(path.join(__dirname + '/html/Documentation.html'));
+    res.sendFile(path.join(__dirname + '/html/Documentation.html'));
 });
-//routes of API
+
+//Routes of API
 app.use('/',router);
 app.use('/users', users);
 app.use('/catalogs', catalogs);
 app.use(function(req, res, next){
     next();
 });
-//listener of port: 8000
+
+//Listener of port: 8000
 app.listen(port, () => {
     console.log('Live port: ' + port);
 });
