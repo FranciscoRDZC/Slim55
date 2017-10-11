@@ -80,37 +80,7 @@ router.post('/login', function(req, res){
                     "status": "Error",
                     "message": "Correo y/o contraseña erroneos"
                 });
-            }
-            //const hash = rows[0].Pwd;
-            //console.log(hash);
-            //bcrypt.compare(password, hash).then(function(res){
-            //    if(res == true){
-            //        res.send(true);
-            //    }
-            //})
-            //bcrypt.compare('D4rthL1nk', hash, function(err, response){
-            //    console.log(response);
-            //    if(err){
-            //        res.json({
-            //            "status": "Error",
-            //            "message": err
-            //        });
-            //    }else{
-            //        if(response === true){
-            //            con.query('Call PlanEat_Select_catUsers_login(?)', [email], function(err, rows){
-            //                res.json({
-            //                    "status":"OK",
-            //                    "data":rows[0]
-            //                });
-            //            });
-            //        }else{
-            //            res.json({
-            //                "status":"Error",
-            //                "message":"Usuario y/o contraseña erroneos"
-            //            });
-            //        }
-            //    }
-            //});
+            }  
         }
     });
 });
@@ -145,31 +115,6 @@ router.post('/register', function (req, res) {
             }
         }
     });
-    //bcrypt.hash(Password, saltRounds, function(err, hash){
-    //    con.query('Call PlanEat_Insert_catUsers_Form (?,?,?,?)',
-    //    [FirstName, LastName, Email, hash],
-    //    function (err, rows) {
-    //        if (err) {
-    //            res.json({
-    //                "status": "Error",
-    //                "message": err
-    //            });
-    //        } else {
-    //            if(rows.fieldCount == 0){
-    //                res.json({
-    //                    "status":"Error",
-    //                    "message":"Usuario ya existente"
-    //                });
-    //            }else{
-    //                res.json({
-    //                    "status": "OK",
-    //                    "token": jwt.sign({}, 'key'),
-    //                    "data": rows[0]
-    //                });
-    //            }
-    //        }
-    //    });
-    //});
 });
 
 //Register method for the social networks.
@@ -196,6 +141,47 @@ router.post('/facebook_google', (req, res) => {
                 });
             }
         });
+});
+
+router.post('/login_facebook_google', function(req, res){
+    try{
+        var Email = req.body.Email;
+        var FacebookID = req.body.FacebookID;
+        var GoogleID = req.body.GoogleID;
+        con.query('Select Email,UserID From catUsers Where (FacebookID = ? OR GoogleID = ?)',
+        [FacebookID, GoogleID], function(err, rows){
+            if(err){
+                Error(err, res);
+            }else{
+                if(!rows.length){
+                    res.json({
+                        "status":"Error",
+                        "message":"Usuario no registrado"
+                    });
+                }
+                else{
+                    if(rows[0].Email === Email){
+                        con.query('Call PlanEat_Select_catUsers_Login_FacebookGoogle(?)',
+                        [rows[0].UserID], function(err, data){
+                            if(err){
+                                Error(err, res);
+                            }
+                            else{
+                                res.json({
+                                    "status":"OK",
+                                    "token":jwt.sign({}, 'key'),
+                                    "data":data[0]
+                                });
+                            }
+                        });
+                    }
+                }
+            }
+        });
+    }
+    catch(err) {
+        Error(err, res);
+    }
 });
 
 //Recive user plan from the app
